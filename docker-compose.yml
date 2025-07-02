@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual.
+    build:
+      context: .
+      dockerfile: dockerfile
+    
+    # Mapeia a porta 8000 do contêiner para a porta 8000 da sua máquina.
+    ports:
+      - "8000:8000"
+      
+    # Monta o diretório atual (código-fonte) dentro do contêiner em /app.
+    # Isso permite o hot-reloading: alterações no seu código local refletem
+    # imediatamente no contêiner, sem precisar reconstruir a imagem.
+    # Também garante que o banco de dados 'escola.db' seja salvo na sua máquina.
+    volumes:
+      - .:/app
